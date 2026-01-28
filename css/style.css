@@ -1,0 +1,51 @@
+body {
+  background-color: #0b0f1a;
+  color: #eaeaea;
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+header {
+  padding: 20px;
+  background-color: #11162a;
+  text-align: center;
+}
+
+h1 {
+  color: #00eaff;
+  text-shadow: 0 0 6px rgba(0,234,255,0.4);
+}
+
+nav a {
+  color: white;
+  margin: 0 10px;
+  text-decoration: none;
+}
+
+nav a:hover {
+  color: #00eaff;
+}
+
+.tabla-clasificacion {
+  width: 100%;
+  margin-top: 20px;
+  border-collapse: collapse;
+  background-color: #0f152b;
+}
+
+.tabla-clasificacion th,
+.tabla-clasificacion td {
+  padding: 12px;
+  text-align: center;
+  border-bottom: 1px solid #1f2a44;
+}
+
+.tabla-clasificacion th {
+  color: #00eaff;
+  text-shadow: 0 0 4px rgba(0,234,255,0.3);
+}
+
+.tabla-clasificacion tr:hover {
+  background-color: #162040;
+}
+

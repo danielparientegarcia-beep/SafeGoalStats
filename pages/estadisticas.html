@@ -2,10 +2,13 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Estadísticas - SafeGoalStats</title>
+  <title>Estadísticas | SafeGoalStats</title>
   <link rel="stylesheet" href="../css/style.css">
+  <script src="../js/script.js" defer></script>
+</head>
+<body>
 
- <header>
+  <header>
     <h1>SafeGoalStats</h1>
     <nav>
       <a href="../index.html">Inicio</a>
@@ -16,14 +19,64 @@
     </nav>
   </header>
 
-<h2>Clasificación</h2>
-<p>Tabla de posiciones de los equipos.</p>
+  <main>
 
-<h2>Goles y asistencias</h2>
-<p>Datos ofensivos de jugadores.</p>
+    <!-- INTRODUCCIÓN -->
+    <section class="bloque">
+      <h2>Estadísticas generales de LaLiga</h2>
+      <p>
+        En esta página se muestran estadísticas generales relacionadas con
+        la competición de LaLiga.
+      </p>
+      <p>
+        Los datos actuales son simulados y sirven como ejemplo de cómo
+        se presentará la información real en el futuro.
+      </p>
+    </section>
 
-<h2>Rendimiento</h2>
-<p>Análisis por equipo.</p>
+    <!-- BLOQUES DE DATOS -->
+    <section class="bloque estadisticas-grid">
+
+      <div class="stat-card">
+        <h3>Goles totales</h3>
+        <p class="stat-numero" id="goles">1234</p>
+      </div>
+
+      <div class="stat-card">
+        <h3>Partidos jugados</h3>
+        <p class="stat-numero" id="partidos">380</p>
+      </div>
+
+      <div class="stat-card">
+        <h3>Tarjetas amarillas</h3>
+        <p class="stat-numero" id="amarillas">1450</p>
+      </div>
+
+      <div class="stat-card">
+        <h3>Tarjetas rojas</h3>
+        <p class="stat-numero" id="rojas">120</p>
+      </div>
+
+    </section>
+
+    <!-- INTERACCIÓN -->
+    <section class="bloque">
+      <h2>Actualizar estadísticas</h2>
+      <p>
+        Este botón simula la actualización de datos estadísticos,
+        representando cómo funcionaría una conexión con el backend.
+      </p>
+
+      <button onclick="actualizarEstadisticas()">
+        Actualizar datos
+      </button>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>© 2026 SafeGoalStats – Proyecto educativo SMX2</p>
+  </footer>
 
 </body>
 </html>

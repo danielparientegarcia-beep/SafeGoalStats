@@ -7,64 +7,56 @@
 </head>
 <body>
 
-  <header>
-    <h1>SafeGoalStats</h1>
+<header>
+  <h1>Clasificación de la Liga</h1>
+  <nav>
     <nav>
-    <a href="../index.html">Inicio</a>
-    <a href="partidos.html">Partidos</a>
-    <a href="clasificacion.html">Clasificación</a>
-    <a href="estadisticas.html">Estadísticas</a>
-    <a href="seguridad.html">Seguridad</a>
-    <a href="registro.html" class="registro">Registrar</a>
-    </nav>
-  </header>
+  <a href="../index.html">Inicio</a>
+  <a href="partidos.html">Partidos</a>
+  <a href="clasificacion.html">Clasificación</a>
+  <a href="estadisticas.html">Estadísticas</a>
+  <a href="seguridad.html">Seguridad</a>
+  <a href="registro.html" class="registro">Registrar</a>
+</nav>
 
-  <main>
+  </nav>
+</header>
 
-    <!-- INTRODUCCIÓN -->
-    <section class="bloque">
-      <h2>Clasificación de LaLiga</h2>
-      <p>
-        Esta página representa la clasificación general de LaLiga,
-        ordenando los equipos según su rendimiento durante la temporada.
-      </p>
-      <p>
-        La clasificación permite al usuario conocer la posición de cada equipo,
-        los puntos obtenidos y su evolución en la competición.
-      </p>
-    </section>
+<main>
 
-    <!-- ZONAS DE LA TABLA -->
-    <section class="bloque">
-      <h2>Zonas de la clasificación</h2>
-      <p>
-        La tabla de clasificación se divide en diferentes zonas,
-        como los puestos europeos, la zona media y los puestos de descenso.
-      </p>
-      <p>
-        Estas zonas ayudan a interpretar mejor la situación de cada equipo
-        dentro de la competición.
-      </p>
-    </section>
+<section class="bloque">
+  <h2>Tabla de posiciones</h2>
+  <p>Esta tabla muestra la clasificación actual de los equipos según sus resultados en la competición.</p>
 
-    <!-- FUTURAS MEJORAS -->
-    <section class="bloque">
-      <h2>Datos en tiempo real</h2>
-      <p>
-        En futuras versiones del proyecto, esta sección mostrará
-        datos actualizados automáticamente mediante una API deportiva.
-      </p>
-      <p>
-        También se podrán incluir gráficos, iconos de equipos
-        y comparativas entre jornadas.
-      </p>
-    </section>
+  <button onclick="ordenarTabla()">Ordenar por puntos</button>
 
-  </main>
+  <table class="tabla-clasificacion" id="tablaLiga">
+    <thead>
+      <tr>
+        <th>Pos</th>
+        <th>Equipo</th>
+        <th>PJ</th>
+        <th>PG</th>
+        <th>PP</th>
+        <th>Pts</th>
+      </tr>
+    </thead>
 
-  <footer>
-    <p>© 2026 SafeGoalStats – Proyecto educativo SMX2</p>
-  </footer>
+    <tbody>
+      <tr><td>1</td><td>Dragones FC</td><td>10</td><td>8</td><td>2</td><td>24</td></tr>
+      <tr><td>2</td><td>Toros United</td><td>10</td><td>7</td><td>3</td><td>21</td></tr>
+      <tr><td>3</td><td>Leones Club</td><td>10</td><td>6</td><td>4</td><td>18</td></tr>
+      <tr><td>4</td><td>Águilas</td><td>10</td><td>5</td><td>5</td><td>15</td></tr>
+      <tr><td>5</td><td>Tiburones</td><td>10</td><td>3</td><td>7</td><td>9</td></tr>
+      <tr><td>6</td><td>Lobos FC</td><td>10</td><td>1</td><td>9</td><td>3</td></tr>
+    </tbody>
+  </table>
+
+</section>
+
+</main>
+
+<script src="../js/app.js"></script>
 
 </body>
 </html>

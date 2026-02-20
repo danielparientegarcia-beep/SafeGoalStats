@@ -193,6 +193,68 @@ button:hover {
 .inicio-bienvenida p {
   margin-bottom: 15px;
 }
+.logo{
+color:#00eaff;
+text-shadow:0 0 10px #00eaff;
+margin:0;
+}
 
+.titulo-pagina{
+font-size:2.5rem;
+margin:30px 0;
+text-align:center;
+}
+.bloque{
+max-width:900px;
+margin:auto;
+line-height:1.6;
+}
 
+.tabla-clasificacion{
+width:100%;
+border-collapse:collapse;
+margin-top:20px;
+}
+
+.tabla-clasificacion th,
+.tabla-clasificacion td{
+padding:10px;
+border-bottom:1px solid #333;
+text-align:center;
+}
+
+.tabla-clasificacion tr:hover{
+background:#111;
+}
+.inicio-container{
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+text-align:center;
+height:80vh;
+}
+
+.titulo-centro{
+font-size:70px;
+color:#00eaff;
+text-shadow:0 0 10px #00eaff,0 0 30px #00eaff;
+margin-bottom:10px;
+}
+
+.subtitulo{
+font-size:18px;
+opacity:0.8;
+margin-bottom:40px;
+}
+
+.contenedor-imagen{
+width:600px;
+height:250px;
+border:2px dashed #00eaff;
+display:flex;
+align-items:center;
+justify-content:center;
+opacity:0.7;
+}
 

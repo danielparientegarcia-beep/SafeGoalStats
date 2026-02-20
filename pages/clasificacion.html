@@ -1,62 +1,74 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <title>Clasificación | SafeGoalStats</title>
-  <link rel="stylesheet" href="../css/style.css">
+<meta charset="UTF-8">
+<title>Clasificación | SafeGoalStats</title>
+<link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
 
 <header>
-  <h1>Clasificación de la Liga</h1>
-  <nav>
-    <nav>
-  <a href="../index.html">Inicio</a>
-  <a href="partidos.html">Partidos</a>
-  <a href="clasificacion.html">Clasificación</a>
-  <a href="estadisticas.html">Estadísticas</a>
-  <a href="seguridad.html">Seguridad</a>
-  <a href="registro.html" class="registro">Registrar</a>
+<h1 class="logo">SafeGoalStats</h1>
+<nav>
+<a href="../index.html">Inicio</a>
+<a href="partidos.html">Partidos</a>
+<a href="clasificacion.html">Clasificación</a>
+<a href="estadisticas.html">Estadísticas</a>
+<a href="seguridad.html">Seguridad</a>
+<a href="registro.html" class="registro">Registrar</a>
 </nav>
-
-  </nav>
 </header>
 
 <main>
 
+<h2 class="titulo-pagina">Clasificación de la Liga</h2>
+
 <section class="bloque">
-  <h2>Tabla de posiciones</h2>
-  <p>Esta tabla muestra la clasificación actual de los equipos según sus resultados en la competición.</p>
+<p>
+Aquí puedes consultar la tabla actualizada de posiciones de los equipos.
+La clasificación se calcula automáticamente según victorias, derrotas y puntos obtenidos.
+</p>
 
-  <button onclick="ordenarTabla()">Ordenar por puntos</button>
+<p>
+Los datos actuales son de ejemplo y en futuras versiones se conectarán a una API deportiva real
+para mostrar resultados en tiempo real.
+</p>
+</section>
 
-  <table class="tabla-clasificacion" id="tablaLiga">
-    <thead>
-      <tr>
-        <th>Pos</th>
-        <th>Equipo</th>
-        <th>PJ</th>
-        <th>PG</th>
-        <th>PP</th>
-        <th>Pts</th>
-      </tr>
-    </thead>
+<section class="bloque">
 
-    <tbody>
-      <tr><td>1</td><td>Dragones FC</td><td>10</td><td>8</td><td>2</td><td>24</td></tr>
-      <tr><td>2</td><td>Toros United</td><td>10</td><td>7</td><td>3</td><td>21</td></tr>
-      <tr><td>3</td><td>Leones Club</td><td>10</td><td>6</td><td>4</td><td>18</td></tr>
-      <tr><td>4</td><td>Águilas</td><td>10</td><td>5</td><td>5</td><td>15</td></tr>
-      <tr><td>5</td><td>Tiburones</td><td>10</td><td>3</td><td>7</td><td>9</td></tr>
-      <tr><td>6</td><td>Lobos FC</td><td>10</td><td>1</td><td>9</td><td>3</td></tr>
-    </tbody>
-  </table>
+<button onclick="ordenarTabla()">Ordenar por puntos</button>
+
+<table class="tabla-clasificacion" id="tablaLiga">
+<thead>
+<tr>
+<th>Pos</th>
+<th>Equipo</th>
+<th>PJ</th>
+<th>PG</th>
+<th>PP</th>
+<th>Pts</th>
+</tr>
+</thead>
+
+<tbody>
+<tr><td>1</td><td>Dragones FC</td><td>10</td><td>8</td><td>2</td><td>24</td></tr>
+<tr><td>2</td><td>Toros United</td><td>10</td><td>7</td><td>3</td><td>21</td></tr>
+<tr><td>3</td><td>Leones Club</td><td>10</td><td>6</td><td>4</td><td>18</td></tr>
+<tr><td>4</td><td>Águilas</td><td>10</td><td>5</td><td>5</td><td>15</td></tr>
+<tr><td>5</td><td>Tiburones</td><td>10</td><td>3</td><td>7</td><td>9</td></tr>
+<tr><td>6</td><td>Lobos FC</td><td>10</td><td>1</td><td>9</td><td>3</td></tr>
+</tbody>
+</table>
 
 </section>
 
 </main>
 
-<script src="../js/app.js"></script>
+<footer>
+<p>© 2026 Proyecto creado por Daniel Pariente y Alex Rubio</p>
+</footer>
 
+<script src="../js/app.js"></script>
 </body>
 </html>

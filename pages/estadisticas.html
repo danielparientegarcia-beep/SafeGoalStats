@@ -1,86 +1,62 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <title>Estadísticas | SafeGoalStats</title>
-  <link rel="stylesheet" href="../css/style.css">
-  <script src="../js/script.js" defer></script>
+<meta charset="UTF-8">
+<title>Estadísticas | SafeGoalStats</title>
+<link rel="stylesheet" href="../css/style.css">
+<script src="../js/script.js" defer></script>
 </head>
 <body>
 
-  <header>
-    <h1>SafeGoalStats</h1>
-    <nav>
-  <nav>
-  <a href="../index.html">Inicio</a>
-  <a href="partidos.html">Partidos</a>
-  <a href="clasificacion.html">Clasificación</a>
-  <a href="estadisticas.html">Estadísticas</a>
-  <a href="seguridad.html">Seguridad</a>
-  <a href="registro.html" class="registro">Registrar</a>
+<header>
+<h1 class="logo">SafeGoalStats</h1>
+<nav>
+<a href="../index.html">Inicio</a>
+<a href="partidos.html">Partidos</a>
+<a href="clasificacion.html">Clasificación</a>
+<a href="estadisticas.html">Estadísticas</a>
+<a href="seguridad.html">Seguridad</a>
+<a href="registro.html" class="registro">Registrar</a>
 </nav>
+</header>
 
-    </nav>
-  </header>
+<main>
 
-  <main>
+<h2 class="titulo-pagina">Estadísticas</h2>
 
-    <!-- INTRODUCCIÓN -->
-    <section class="bloque">
-      <h2>Estadísticas generales de LaLiga</h2>
-      <p>
-        En esta página se muestran estadísticas generales relacionadas con
-        la competición de LaLiga.
-      </p>
-      <p>
-        Los datos actuales son simulados y sirven como ejemplo de cómo
-        se presentará la información real en el futuro.
-      </p>
-    </section>
+<section class="bloque estadisticas-grid">
 
-    <!-- BLOQUES DE DATOS -->
-    <section class="bloque estadisticas-grid">
+<div class="stat-card">
+<h3>Goles totales</h3>
+<p class="stat-numero" id="goles">1234</p>
+</div>
 
-      <div class="stat-card">
-        <h3>Goles totales</h3>
-        <p class="stat-numero" id="goles">1234</p>
-      </div>
+<div class="stat-card">
+<h3>Partidos jugados</h3>
+<p class="stat-numero" id="partidos">380</p>
+</div>
 
-      <div class="stat-card">
-        <h3>Partidos jugados</h3>
-        <p class="stat-numero" id="partidos">380</p>
-      </div>
+<div class="stat-card">
+<h3>Amarillas</h3>
+<p class="stat-numero" id="amarillas">1450</p>
+</div>
 
-      <div class="stat-card">
-        <h3>Tarjetas amarillas</h3>
-        <p class="stat-numero" id="amarillas">1450</p>
-      </div>
+<div class="stat-card">
+<h3>Rojas</h3>
+<p class="stat-numero" id="rojas">120</p>
+</div>
 
-      <div class="stat-card">
-        <h3>Tarjetas rojas</h3>
-        <p class="stat-numero" id="rojas">120</p>
-      </div>
+</section>
 
-    </section>
+<section class="bloque">
+<button onclick="actualizarEstadisticas()">Actualizar datos</button>
+</section>
 
-    <!-- INTERACCIÓN -->
-    <section class="bloque">
-      <h2>Actualizar estadísticas</h2>
-      <p>
-        Este botón simula la actualización de datos estadísticos,
-        representando cómo funcionaría una conexión con el backend.
-      </p>
+</main>
 
-      <button onclick="actualizarEstadisticas()">
-        Actualizar datos
-      </button>
-    </section>
-
-  </main>
-
-  <footer>
-    <p>© 2026 SafeGoalStats – Proyecto educativo SMX2</p>
-  </footer>
+<footer>
+<p>© 2026 Proyecto creado por Daniel Pariente y Alex Rubio</p>
+</footer>
 
 </body>
 </html>

@@ -1,5 +1,4 @@
 console.log("SafeGoalStats cargado correctamente");
-alert("Bienvenido a SafeGoalStats");
 
 function ordenarTabla() {
   const tabla = document.getElementById("tablaLiga");
@@ -11,3 +10,93 @@ function ordenarTabla() {
 
   filas.forEach(fila => tabla.appendChild(fila));
 }
+
+// =======================
+// DETECTAR TEMA SISTEMA
+// =======================
+
+const temaGuardado = localStorage.getItem("tema");
+
+if(!temaGuardado){
+  if(window.matchMedia("(prefers-color-scheme: light)").matches){
+    document.body.classList.add("claro");
+  }
+}
+
+// Detectar página activa correctamente
+const links = document.querySelectorAll("nav a");
+
+links.forEach(link => {
+  const linkPath = link.getAttribute("href").split("/").pop();
+  const currentPath = window.location.pathname.split("/").pop();
+
+  if (linkPath === currentPath) {
+    link.classList.add("activo");
+  }
+});
+// =================
+// MODO OSCURO / CLARO
+// =================
+
+const botonModo = document.getElementById("modoToggle");
+
+// cargar preferencia guardada
+if(localStorage.getItem("tema") === "claro"){
+  document.body.classList.add("claro");
+  if(botonModo) botonModo.textContent="☀️";
+}
+
+// toggle
+if(botonModo){
+  botonModo.addEventListener("click", ()=>{
+    document.body.classList.toggle("claro");
+
+    if(document.body.classList.contains("claro")){
+      localStorage.setItem("tema","claro");
+      botonModo.textContent="☀️";
+    }else{
+      localStorage.setItem("tema","oscuro");
+      botonModo.textContent="🌙";
+    }
+  });
+}
+
+// ===========================
+// TRANSICION ENTRE PAGINAS
+// ===========================
+
+document.querySelectorAll("a").forEach(link=>{
+  const destino = link.getAttribute("href");
+
+  // ignorar enlaces externos, anchors o vacíos
+  if(!destino || destino.startsWith("#") || destino.startsWith("http"))
+    return;
+
+  link.addEventListener("click", function(e){
+    e.preventDefault();
+    document.body.classList.add("fade-out");
+
+    setTimeout(()=>{
+      window.location.href = destino;
+    }, 300);
+  });
+});
+
+window.addEventListener("pageshow", ()=>{
+  document.body.classList.remove("fade-out");
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+  const tema = localStorage.getItem('tema') || 'oscuro';
+  if (tema === 'claro') document.body.classList.add('claro');
+  document.body.style.opacity = 1; // se muestra solo cuando la clase ya está aplicada
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+  const tema = localStorage.getItem('tema') || 'oscuro';
+
+  if (tema === 'claro') document.body.classList.add('claro');
+
+  // Mostrar la página solo cuando ya está aplicada la clase
+  document.body.style.opacity = 1;
+});

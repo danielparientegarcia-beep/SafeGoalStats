@@ -4,6 +4,13 @@
 <meta charset="UTF-8">
 <title>Partidos | SafeGoalStats</title>
 <link rel="stylesheet" href="../css/style.css">
+
+<script>
+const tema=localStorage.getItem("tema");
+if(tema==="claro"){
+document.documentElement.classList.add("claro");
+}
+</script>
 </head>
 <body>
 
@@ -16,6 +23,7 @@
 <a href="estadisticas.html">Estadísticas</a>
 <a href="seguridad.html">Seguridad</a>
 <a href="registro.html" class="registro">Registrar</a>
+<button id="modoToggle">🌙</button>
 </nav>
 </header>
 
@@ -43,6 +51,20 @@
 <footer>
 <p>© 2026 Proyecto creado por Daniel Pariente y Alex Rubio</p>
 </footer>
+<script src="../js/app.js"></script>
+<body style="opacity:0;"></body>
 
+<script>
+const btnTema = document.getElementById('toggleTema');
+
+if(btnTema){
+  btnTema.addEventListener('click', () => {
+    document.body.classList.toggle('claro');
+    const modoActual = document.body.classList.contains('claro') ? 'claro' : 'oscuro';
+    localStorage.setItem('tema', modoActual);
+  });
+}
+</script>
+</body>
 </body>
 </html>

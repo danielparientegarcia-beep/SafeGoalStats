@@ -440,3 +440,38 @@ body.claro .tabla-clasificacion th {
 body.claro .tabla-clasificacion tr:hover {
   background-color: rgba(122,92,255,0.1);
 }
+
+/* =========================
+   BOTÓN CAMBIO DE TEMA
+   ========================= */
+
+#toggleTema {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  z-index: 1000;
+
+  padding: 10px 14px;
+  border-radius: 50px;
+  border: none;
+  cursor: pointer;
+
+  font-size: 18px;
+  font-weight: bold;
+
+  transition: all 0.3s ease;
+}
+
+/* Modo oscuro */
+body:not(.claro) #toggleTema {
+  background-color: #111;
+  color: #00eaff;
+  box-shadow: 0 0 12px #00eaff;
+}
+
+/* Modo claro (neón morado) */
+body.claro #toggleTema {
+  background-color: white;
+  color: #7a5cff;
+  box-shadow: 0 0 12px #7a5cff;
+}

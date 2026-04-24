@@ -27,10 +27,13 @@ if(!temaGuardado){
 const links = document.querySelectorAll("nav a");
 
 links.forEach(link => {
-  const linkPath = link.getAttribute("href").split("/").pop();
-  const currentPath = window.location.pathname.split("/").pop();
+  const linkHref = link.getAttribute("href");
 
-  if (linkPath === currentPath) {
+  if (!linkHref) return;
+
+  const currentPath = window.location.pathname;
+
+  if (currentPath.includes(linkHref.replace("../", "").replace("pages/", ""))) {
     link.classList.add("activo");
   }
 });
@@ -65,21 +68,23 @@ if(botonModo){
 // TRANSICION ENTRE PAGINAS
 // ===========================
 
-document.querySelectorAll("a").forEach(link=>{
+document.addEventListener("click", function(e){
+  const link = e.target.closest("a");
+
+  if (!link) return;
+
   const destino = link.getAttribute("href");
 
-  // ignorar enlaces externos, anchors o vacíos
   if(!destino || destino.startsWith("#") || destino.startsWith("http"))
     return;
 
-  link.addEventListener("click", function(e){
-    e.preventDefault();
-    document.body.classList.add("fade-out");
+  e.preventDefault();
 
-    setTimeout(()=>{
-      window.location.href = destino;
-    }, 300);
-  });
+  document.body.classList.add("fade-out");
+
+  setTimeout(()=>{
+    window.location.href = destino;
+  }, 300);
 });
 
 window.addEventListener("pageshow", ()=>{

@@ -85,6 +85,35 @@ nav a:hover::before {
   100% { left: 130%; }
 }
 
+nav a::before {
+  opacity: 0;
+}
+
+/* FIX brillo permanente */
+nav a::before {
+  opacity: 0;
+}
+
+nav a:hover::before {
+  opacity: 1;
+  animation: brillo 0.8s forwards;
+}
+
+/* FIX parpadeo login/registro */
+nav .registro::before {
+  display: none;
+}
+
+/* FIX layout */
+nav a {
+  display: inline-block;
+}
+
+/* FIX botones */
+button {
+  position: relative;
+}
+
 /* BOTÓN REGISTRO */
 nav .registro {
   background-color: #00e0ff;

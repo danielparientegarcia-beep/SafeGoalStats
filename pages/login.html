@@ -1,38 +1,55 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <title>Login - SafeGoalStats</title>
-  <link rel="stylesheet" href="../css/style.css">
+<meta charset="UTF-8">
+<title>Login | SafeGoalStats</title>
+<link rel="stylesheet" href="../css/style.css">
 </head>
 
 <body>
 
-  <h1>Iniciar sesión</h1>
+<header>
+<h1 class="logo">SafeGoalStats</h1>
+<nav>
+<a href="../index.html">Inicio</a>
+<a href="partidos.html">Partidos</a>
+<a href="clasificacion.html">Clasificación</a>
+<a href="estadisticas.html">Estadísticas</a>
+<a href="seguridad.html">Seguridad</a>
 
-  <form id="form-login">
+<span id="nav-auth"></span>
+</nav>
+</header>
 
-    <input 
-      type="email" 
-      id="email" 
-      placeholder="Email" 
-      required
-    >
+<main class="inicio-container">
 
-    <input 
-      type="password" 
-      id="password" 
-      placeholder="Contraseña" 
-      required
-    >
+<h2 class="titulo-centro">Iniciar sesión</h2>
 
-    <button type="submit">Entrar</button>
+<div class="bloque" style="max-width:400px;margin:auto;">
 
-  </form>
+<form id="form-login">
 
-  <p id="error"></p>
+<input type="email" id="email" placeholder="Email" required>
+<input type="password" id="password" placeholder="Contraseña" required>
 
-  <script src="../js/login.js"></script>
+<button type="submit">Entrar</button>
 
+</form>
+
+<p id="error"></p>
+
+</div>
+
+</main>
+
+<footer>
+<p>© 2026 SafeGoalStats</p>
+</footer>
+
+<script src="../js/login.js"></script>
+<script src="../js/app.js"></script>
+<script src="../js/main.js"></script>
+
+<script src="../js/auth.js"></script>
 </body>
 </html>

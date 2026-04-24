@@ -22,7 +22,9 @@ document.documentElement.classList.add("claro");
 <a href="clasificacion.html">Clasificación</a>
 <a href="estadisticas.html">Estadísticas</a>
 <a href="seguridad.html">Seguridad</a>
-<a href="registro.html" class="registro">Registrar</a>
+
+
+<span id="nav-auth"></span>
 </nav>
 </header>
 
@@ -66,5 +68,14 @@ if(btnTema){
 </script>
 <script src="main.js"></script>
 
+<script src="../js/auth.js"></script>
+
+<script>
+if (!localStorage.getItem("token")) {
+  window.location.href = "login.html";
+}
+</script>
+
+<script src="../js/auth.js"></script>
 </body>
 </html>

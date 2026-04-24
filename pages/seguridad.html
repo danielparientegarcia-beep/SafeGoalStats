@@ -2,87 +2,105 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Seguridad | SafeGoalStats</title>
 <link rel="stylesheet" href="../css/style.css">
-
 <script>
-const tema=localStorage.getItem("tema");
-if(tema==="claro"){
-document.documentElement.classList.add("claro");
-}
+const tema = localStorage.getItem("tema");
+if (tema === "claro") document.documentElement.classList.add("claro");
 </script>
 </head>
 <body>
 
 <header>
-<h1 class="logo">SafeGoalStats</h1>
-<nav>
-<a href="../index.html">Inicio</a>
-<a href="partidos.html">Partidos</a>
-<a href="clasificacion.html">Clasificación</a>
-<a href="estadisticas.html">Estadísticas</a>
-<a href="seguridad.html">Seguridad</a>
-
-
-<span id="nav-auth"></span>
-</nav>
+  <a href="../index.html" class="logo">
+    <span class="logo-dot"></span>
+    SafeGoalStats
+  </a>
+  <nav>
+    <a href="../index.html">Inicio</a>
+    <a href="partidos.html">Partidos</a>
+    <a href="clasificacion.html">Clasificación</a>
+    <a href="estadisticas.html">Estadísticas</a>
+    <a href="seguridad.html" class="activo">Seguridad</a>
+    <span id="nav-auth"></span>
+  </nav>
 </header>
 
 <main>
+  <div class="page-header">
+    <span class="section-tag">Privacidad y confianza</span>
+    <h2 class="titulo-pagina">Seguridad</h2>
+    <p style="color:var(--text-secondary);font-size:.95rem;max-width:560px;">La seguridad es uno de los pilares de SafeGoalStats. Conoce las medidas que aplicamos para proteger a los usuarios y sus datos.</p>
+    <div class="page-divider"></div>
+  </div>
 
-<h2 class="titulo-pagina">Seguridad</h2>
+  <!-- Banner de confianza -->
+  <div class="security-banner reveal">
+    <div class="security-banner-icon">🛡️</div>
+    <div>
+      <h3>Plataforma segura y fiable</h3>
+      <p>SafeGoalStats está diseñada siguiendo buenas prácticas de ciberseguridad. Nuestra prioridad es que puedas consultar estadísticas con total tranquilidad, sabiendo que tus datos están protegidos.</p>
+    </div>
+  </div>
 
-<section class="bloque">
-<h3>Seguridad de la plataforma</h3>
-<p>La seguridad es uno de los pilares fundamentales del proyecto SafeGoalStats. Esta página explica las medidas básicas que se aplican para proteger a los usuarios y la información del sistema.</p>
-<p>El objetivo es concienciar sobre la importancia de la ciberseguridad y ofrecer una plataforma fiable y educativa.</p>
-</section>
+  <!-- Grid de tarjetas de seguridad -->
+  <div class="security-grid">
 
-<section class="bloque">
-<h3>Servidor web Apache</h3>
-<p>SafeGoalStats utiliza Apache como servidor web encargado de recibir peticiones y servir páginas de forma segura.</p>
-<p>Permite configurar permisos, rutas y futuras conexiones cifradas HTTPS.</p>
-</section>
+    <div class="security-card reveal reveal-delay-1">
+      <span class="security-icon">🖥️</span>
+      <h3>Servidor Apache</h3>
+      <p>SafeGoalStats utiliza Apache como servidor web para recibir peticiones y servir páginas de forma segura. Permite configurar permisos, rutas y conexiones cifradas HTTPS.</p>
+      <span class="security-badge">✓ Activo</span>
+    </div>
 
-<section class="bloque">
-<h3>Protección de datos</h3>
-<p>El proyecto está diseñado para que los datos personales no sean accesibles sin autorización.</p>
-<p>En versiones futuras las contraseñas estarán cifradas y habrá autenticación segura.</p>
-</section>
+    <div class="security-card reveal reveal-delay-2">
+      <span class="security-icon">🔐</span>
+      <h3>Protección de datos</h3>
+      <p>Los datos personales no son accesibles sin autorización. Las contraseñas están cifradas y el sistema de autenticación garantiza que solo tú puedes acceder a tu cuenta.</p>
+      <span class="security-badge">✓ Implementado</span>
+    </div>
 
-<section class="bloque">
-<h3>Amenazas comunes</h3>
-<p>Se tienen en cuenta ataques habituales como SQL Injection, XSS o accesos no autorizados.</p>
-<p>Se aplican buenas prácticas como validación de datos y control de errores.</p>
-</section>
+    <div class="security-card reveal reveal-delay-3">
+      <span class="security-icon">⚠️</span>
+      <h3>Amenazas comunes</h3>
+      <p>Se tienen en cuenta ataques habituales como SQL Injection, XSS y accesos no autorizados. Se aplican validación de datos, sanitización y control de errores en todo el sistema.</p>
+      <span class="security-badge security-badge-yellow">⚡ Monitoreado</span>
+    </div>
 
-<section class="bloque">
-<h3>Mejoras futuras</h3>
-<p>Se podrán añadir tokens, control de sesiones y alertas de seguridad personalizadas.</p>
-</section>
+    <div class="security-card reveal reveal-delay-4">
+      <span class="security-icon">🚀</span>
+      <h3>Mejoras futuras</h3>
+      <p>Próximamente se añadirán tokens JWT, control de sesiones avanzado, alertas de seguridad personalizadas y auditorías automáticas del sistema.</p>
+      <span class="security-badge security-badge-yellow">⏳ En desarrollo</span>
+    </div>
+
+  </div>
+
+  <section class="bloque reveal" style="text-align:center;">
+    <h3>¿Tienes dudas sobre tu privacidad?</h3>
+    <p style="margin-bottom:var(--space-lg);">Si tienes preguntas sobre cómo gestionamos tus datos o quieres reportar un problema de seguridad, contáctanos. La transparencia es parte de nuestro compromiso.</p>
+    <a href="../index.html" class="btn btn-primary" style="display:inline-flex;">Volver al inicio</a>
+  </section>
 
 </main>
 
 <footer>
-<p>© 2026 Proyecto creado por Daniel Pariente y Alex Rubio</p>
+  <p>© 2026 SafeGoalStats · Creado por Daniel Pariente y Alex Rubio</p>
 </footer>
+
+<button id="toggleTema">🌙</button>
+
 <script src="../js/app.js"></script>
-<body>
-
-<script>
-const btnTema = document.getElementById('toggleTema');
-
-if(btnTema){
-  btnTema.addEventListener('click', () => {
-    document.body.classList.toggle('claro');
-    const modoActual = document.body.classList.contains('claro') ? 'claro' : 'oscuro';
-    localStorage.setItem('tema', modoActual);
-  });
-}
-
-</script>
-<script src="main.js"></script>
-
 <script src="../js/auth.js"></script>
+<script src="../js/main.js"></script>
+<script>
+const observer = new IntersectionObserver(
+  entries => entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); }),
+  { threshold: 0.1 }
+);
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
 </body>
 </html>

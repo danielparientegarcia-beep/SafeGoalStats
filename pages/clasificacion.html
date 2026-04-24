@@ -2,105 +2,103 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Clasificación | SafeGoalStats</title>
 <link rel="stylesheet" href="../css/style.css">
-
 <script>
-const tema=localStorage.getItem("tema");
-if(tema==="claro"){
-document.documentElement.classList.add("claro");
-}
+const tema = localStorage.getItem("tema");
+if (tema === "claro") document.documentElement.classList.add("claro");
 </script>
 </head>
 <body>
 
 <header>
-<h1 class="logo">SafeGoalStats</h1>
-<nav>
-<a href="../index.html">Inicio</a>
-<a href="partidos.html">Partidos</a>
-<a href="clasificacion.html">Clasificación</a>
-<a href="estadisticas.html">Estadísticas</a>
-<a href="seguridad.html">Seguridad</a>
-
-
-<span id="nav-auth"></span>
-</nav>
+  <a href="../index.html" class="logo">
+    <span class="logo-dot"></span>
+    SafeGoalStats
+  </a>
+  <nav>
+    <a href="../index.html">Inicio</a>
+    <a href="partidos.html">Partidos</a>
+    <a href="clasificacion.html" class="activo">Clasificación</a>
+    <a href="estadisticas.html">Estadísticas</a>
+    <a href="seguridad.html">Seguridad</a>
+    <span id="nav-auth"></span>
+  </nav>
 </header>
 
 <main>
-<h2 class="titulo-pagina">Clasificación de la Liga</h2>
+  <div class="page-header">
+    <span class="section-tag">Temporada 2025/26</span>
+    <h2 class="titulo-pagina">Clasificación</h2>
+    <p style="color:var(--text-secondary);font-size:.95rem;max-width:560px;">Tabla de posiciones actualizada de LaLiga. Los datos se calculan automáticamente según victorias, empates y puntos obtenidos.</p>
+    <div class="page-divider"></div>
+  </div>
 
-<section class="bloque">
-<p>
-Aquí puedes consultar la tabla actualizada de posiciones de los equipos.
-La clasificación se calcula automáticamente según victorias, derrotas y puntos obtenidos.
-</p>
+  <section class="bloque reveal" style="margin-top:var(--space-xl);">
+    <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:var(--space-md);margin-bottom:var(--space-xl);">
+      <h3 style="border:none;padding:0;margin:0;">LaLiga EA Sports</h3>
+      <button onclick="ordenarTabla()">Ordenar por puntos</button>
+    </div>
 
-<p>
-Los datos actuales son de ejemplo y en futuras versiones se conectarán a una API deportiva real
-para mostrar resultados en tiempo real.
-</p>
-</section>
+    <table class="tabla-clasificacion" id="tablaLiga">
+      <thead>
+        <tr>
+          <th>Pos</th>
+          <th style="text-align:left;">Equipo</th>
+          <th>PJ</th>
+          <th>PG</th>
+          <th>PP</th>
+          <th>Pts</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>1</td><td>Dragones FC</td><td>10</td><td>8</td><td>2</td><td>24</td></tr>
+        <tr><td>2</td><td>Toros United</td><td>10</td><td>7</td><td>3</td><td>21</td></tr>
+        <tr><td>3</td><td>Leones Club</td><td>10</td><td>6</td><td>4</td><td>18</td></tr>
+        <tr><td>4</td><td>Águilas</td><td>10</td><td>5</td><td>5</td><td>15</td></tr>
+        <tr><td>5</td><td>Tiburones</td><td>10</td><td>3</td><td>7</td><td>9</td></tr>
+        <tr><td>6</td><td>Lobos FC</td><td>10</td><td>1</td><td>9</td><td>3</td></tr>
+      </tbody>
+    </table>
+  </section>
 
-<section class="bloque">
-
-<button onclick="ordenarTabla()">Ordenar por puntos</button>
-
-<table class="tabla-clasificacion" id="tablaLiga">
-<thead>
-<tr>
-<th>Pos</th>
-<th>Equipo</th>
-<th>PJ</th>
-<th>PG</th>
-<th>PP</th>
-<th>Pts</th>
-</tr>
-</thead>
-
-<tbody>
-<tr><td>1</td><td>Dragones FC</td><td>10</td><td>8</td><td>2</td><td>24</td></tr>
-<tr><td>2</td><td>Toros United</td><td>10</td><td>7</td><td>3</td><td>21</td></tr>
-<tr><td>3</td><td>Leones Club</td><td>10</td><td>6</td><td>4</td><td>18</td></tr>
-<tr><td>4</td><td>Águilas</td><td>10</td><td>5</td><td>5</td><td>15</td></tr>
-<tr><td>5</td><td>Tiburones</td><td>10</td><td>3</td><td>7</td><td>9</td></tr>
-<tr><td>6</td><td>Lobos FC</td><td>10</td><td>1</td><td>9</td><td>3</td></tr>
-</tbody>
-</table>
-
-</section>
+  <section class="bloque reveal reveal-delay-1" style="padding:var(--space-lg) var(--space-xl);">
+    <div style="display:flex;gap:var(--space-lg);flex-wrap:wrap;align-items:center;">
+      <div style="display:flex;align-items:center;gap:var(--space-sm);">
+        <div style="width:10px;height:10px;border-radius:50%;background:var(--accent-emerald);"></div>
+        <span style="font-size:.82rem;color:var(--text-muted);">Champions League</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:var(--space-sm);">
+        <div style="width:10px;height:10px;border-radius:50%;background:var(--accent-gold);"></div>
+        <span style="font-size:.82rem;color:var(--text-muted);">Europa League</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:var(--space-sm);">
+        <div style="width:10px;height:10px;border-radius:50%;background:#ff5050;"></div>
+        <span style="font-size:.82rem;color:var(--text-muted);">Descenso</span>
+      </div>
+      <p style="font-size:.82rem;color:var(--text-muted);margin:0;margin-left:auto;">Datos de ejemplo · Próximamente API en tiempo real</p>
+    </div>
+  </section>
 </main>
 
 <footer>
-<p>© 2026 Proyecto creado por Daniel Pariente y Alex Rubio</p>
+  <p>© 2026 SafeGoalStats · Creado por Daniel Pariente y Alex Rubio</p>
 </footer>
 
+<button id="toggleTema">🌙</button>
+
 <script src="../js/app.js"></script>
-<body>
-
-<script>
-const btnTema = document.getElementById('toggleTema');
-
-if(btnTema){
-  btnTema.addEventListener('click', () => {
-    document.body.classList.toggle('claro');
-    const modoActual = document.body.classList.contains('claro') ? 'claro' : 'oscuro';
-    localStorage.setItem('tema', modoActual);
-  });
-}
-</script>
-<script src="main.js"></script>
-
 <script src="../js/auth.js"></script>
-
+<script src="../js/main.js"></script>
 <script>
-if (!localStorage.getItem("token")) {
-  window.location.href = "login.html";
-}
+if (!localStorage.getItem("token")) window.location.href = "login.html";
+const observer = new IntersectionObserver(
+  entries => entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); }),
+  { threshold: 0.1 }
+);
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 </script>
-
-<script src="../js/auth.js"></script>
 
 </body>
 </html>

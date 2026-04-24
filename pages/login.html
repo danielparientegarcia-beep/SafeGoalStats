@@ -2,54 +2,190 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<title>Login | SafeGoalStats</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Acceso | SafeGoalStats</title>
 <link rel="stylesheet" href="../css/style.css">
+<script>
+const tema = localStorage.getItem("tema");
+if (tema === "claro") document.documentElement.classList.add("claro");
+</script>
 </head>
-
 <body>
 
 <header>
-<h1 class="logo">SafeGoalStats</h1>
-<nav>
-<a href="../index.html">Inicio</a>
-<a href="partidos.html">Partidos</a>
-<a href="clasificacion.html">Clasificación</a>
-<a href="estadisticas.html">Estadísticas</a>
-<a href="seguridad.html">Seguridad</a>
-
-<span id="nav-auth"></span>
-</nav>
+  <a href="../index.html" class="logo">
+    <span class="logo-dot"></span>
+    SafeGoalStats
+  </a>
+  <nav>
+    <a href="../index.html">Inicio</a>
+    <a href="partidos.html">Partidos</a>
+    <a href="clasificacion.html">Clasificación</a>
+    <a href="estadisticas.html">Estadísticas</a>
+    <a href="seguridad.html">Seguridad</a>
+    <span id="nav-auth"></span>
+  </nav>
 </header>
 
-<main class="inicio-container">
+<main class="auth-page">
+  <div class="auth-container">
+    <div class="auth-card">
 
-<h2 class="titulo-centro">Iniciar sesión</h2>
+      <div class="auth-logo">
+        <span class="logo-dot"></span>
+        SafeGoalStats
+      </div>
 
-<div class="bloque" style="max-width:400px;margin:auto;">
+      <!-- Tabs -->
+      <div class="auth-tabs">
+        <button class="auth-tab active" id="tab-login" onclick="switchTab('login')">Iniciar sesión</button>
+        <button class="auth-tab" id="tab-registro" onclick="switchTab('registro')">Registrarse</button>
+      </div>
 
-<form id="form-login">
+      <!-- LOGIN FORM — lógica original intacta -->
+      <form id="form-login" class="auth-form active">
+        <div class="form-group">
+          <label class="form-label" for="email-login">Email</label>
+          <input class="form-input" type="email" id="email" name="email" placeholder="tu@email.com" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="password-login">Contraseña</label>
+          <input class="form-input" type="password" id="password" name="password" placeholder="••••••••" required>
+        </div>
+        <button type="submit" class="form-submit">Entrar</button>
+        <p id="error" class="form-message"></p>
+      </form>
 
-<input type="email" id="email" placeholder="Email" required>
-<input type="password" id="password" placeholder="Contraseña" required>
+      <!-- REGISTRO FORM — lógica original intacta -->
+      <form id="registroForm" class="auth-form">
+        <div class="form-group">
+          <label class="form-label" for="username">Usuario</label>
+          <input class="form-input" type="text" id="username" name="username" placeholder="Tu nombre de usuario" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="email-reg">Email</label>
+          <input class="form-input" type="email" id="email-reg" name="email" placeholder="tu@email.com" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="password-reg">Contraseña</label>
+          <input class="form-input" type="password" id="password-reg" name="password" placeholder="••••••••" required>
+        </div>
+        <button type="submit" class="form-submit">Crear cuenta</button>
+        <div id="mensaje" class="form-message"></div>
+      </form>
 
-<button type="submit">Entrar</button>
-
-</form>
-
-<p id="error"></p>
-
-</div>
-
+    </div>
+  </div>
 </main>
 
-<footer>
-<p>© 2026 SafeGoalStats</p>
-</footer>
+<button id="toggleTema">🌙</button>
 
-<script src="../js/login.js"></script>
 <script src="../js/app.js"></script>
+<script src="../js/auth.js"></script>
 <script src="../js/main.js"></script>
 
-<script src="../js/auth.js"></script>
+<script>
+// Tab switcher
+function switchTab(tab) {
+  const loginForm = document.getElementById('form-login');
+  const regForm = document.getElementById('registroForm');
+  const tabLogin = document.getElementById('tab-login');
+  const tabReg = document.getElementById('tab-registro');
+
+  if (tab === 'login') {
+    loginForm.classList.add('active');
+    regForm.classList.remove('active');
+    tabLogin.classList.add('active');
+    tabReg.classList.remove('active');
+  } else {
+    regForm.classList.add('active');
+    loginForm.classList.remove('active');
+    tabReg.classList.add('active');
+    tabLogin.classList.remove('active');
+  }
+}
+
+// Check URL param to auto-switch to registro tab
+if (window.location.search.includes('tab=registro') || window.location.hash === '#registro') {
+  switchTab('registro');
+}
+</script>
+
+<!-- LOGIN LOGIC — original intacto -->
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const form = document.getElementById("form-login");
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
+
+    try {
+      const res = await fetch("http://192.168.239.119:3000/api/auth/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password })
+      });
+
+      const data = await res.json();
+
+      if (res.ok) {
+        localStorage.setItem("token", data.token);
+        alert("Login correcto");
+        window.location.href = "/safegoalstats/index.html";
+      } else {
+        const err = document.getElementById("error");
+        err.textContent = data.mensaje || "Error en login";
+        err.className = "form-message error";
+      }
+    } catch (error) {
+      console.error(error);
+      const err = document.getElementById("error");
+      err.textContent = "Error de conexión con el servidor";
+      err.className = "form-message error";
+    }
+  });
+});
+</script>
+
+<!-- REGISTRO LOGIC — original intacto, adaptado a nuevos IDs -->
+<script>
+const regForm = document.getElementById('registroForm');
+const mensaje = document.getElementById('mensaje');
+
+regForm.addEventListener('submit', async (e) => {
+  e.preventDefault();
+
+  const username = document.getElementById('username').value;
+  const email = document.getElementById('email-reg').value;
+  const password = document.getElementById('password-reg').value;
+
+  try {
+    const res = await fetch('http://192.168.239.119:3000/api/auth/registro', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ username, email, password })
+    });
+
+    const data = await res.json();
+
+    if (res.ok) {
+      mensaje.textContent = '✅ Usuario registrado correctamente';
+      mensaje.className = 'form-message success';
+      regForm.reset();
+      setTimeout(() => switchTab('login'), 1800);
+    } else {
+      mensaje.textContent = '❌ ' + data.error;
+      mensaje.className = 'form-message error';
+    }
+  } catch (error) {
+    mensaje.textContent = '❌ Error de conexión con el servidor';
+    mensaje.className = 'form-message error';
+  }
+});
+</script>
+
 </body>
 </html>

@@ -2,66 +2,174 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Inicio | SafeGoalStats</title>
 <link rel="stylesheet" href="css/style.css">
-
 <script>
-const tema=localStorage.getItem("tema");
-if(tema==="claro"){
-document.documentElement.classList.add("claro");
-}
+const tema = localStorage.getItem("tema");
+if (tema === "claro") document.documentElement.classList.add("claro");
 </script>
 </head>
 <body class="inicio">
 
 <header>
-
-<h1 class="logo">SafeGoalStats</h1>
-
-<nav>
-<a href="index.html" class="activo">Inicio</a>
-<a href="pages/partidos.html">Partidos</a>
-<a href="pages/clasificacion.html">Clasificación</a>
-<a href="pages/estadisticas.html">Estadísticas</a>
-<a href="pages/seguridad.html">Seguridad</a>
-
-<span id="nav-auth"></span>
-</nav>
-
+  <a href="index.html" class="logo">
+    <span class="logo-dot"></span>
+    SafeGoalStats
+  </a>
+  <nav>
+    <a href="index.html" class="activo">Inicio</a>
+    <a href="pages/partidos.html">Partidos</a>
+    <a href="pages/clasificacion.html">Clasificación</a>
+    <a href="pages/estadisticas.html">Estadísticas</a>
+    <a href="pages/seguridad.html">Seguridad</a>
+    <span id="nav-auth"></span>
+  </nav>
 </header>
 
-<main class="inicio-container">
+<main>
 
-<h1 class="titulo-centro">SafeGoalStats</h1>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg-ring"></div>
+    <div class="hero-bg-ring"></div>
 
-<p class="subtitulo">Estadísticas de fútbol claras, rápidas y seguras</p>
+    <p class="hero-eyebrow">Liga Española de Fútbol</p>
 
-<!-- ESPACIO PARA IMAGEN FUTURA -->
-<div class="contenedor-imagen">
-<p>Aquí irá una imagen próximamente</p>
-</div>
+    <h1 class="hero-title">
+      Safe<span>Goal</span>Stats
+    </h1>
+
+    <p class="hero-subtitle">
+      Estadísticas claras, rápidas y seguras de la liga española.
+      Datos reales para decisiones inteligentes.
+    </p>
+
+    <div class="hero-cta-group">
+      <a href="pages/clasificacion.html" class="btn btn-primary">Ver Clasificación</a>
+      <a href="pages/estadisticas.html" class="btn btn-outline">Estadísticas</a>
+    </div>
+
+    <div class="hero-stats">
+      <div class="hero-stat-item">
+        <div class="hero-stat-value">20</div>
+        <div class="hero-stat-label">Equipos</div>
+      </div>
+      <div class="hero-divider"></div>
+      <div class="hero-stat-item">
+        <div class="hero-stat-value">380</div>
+        <div class="hero-stat-label">Partidos</div>
+      </div>
+      <div class="hero-divider"></div>
+      <div class="hero-stat-item">
+        <div class="hero-stat-value">1234</div>
+        <div class="hero-stat-label">Goles</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section class="features-section">
+    <div class="section" style="padding-top:0; padding-bottom:0;">
+      <span class="section-tag reveal">¿Qué ofrecemos?</span>
+      <h2 class="section-title reveal reveal-delay-1">Todo lo que necesitas</h2>
+      <p class="section-subtitle reveal reveal-delay-2">Accede a estadísticas detalladas, clasificaciones en tiempo real y análisis de partidos en un solo lugar.</p>
+    </div>
+
+    <div class="features-grid">
+      <div class="feature-card reveal reveal-delay-1">
+        <div class="feature-icon">⚽</div>
+        <h3>Partidos</h3>
+        <p>Resultados en tiempo real, historial completo y próximos encuentros con toda la información que necesitas.</p>
+      </div>
+      <div class="feature-card reveal reveal-delay-2">
+        <div class="feature-icon">🏆</div>
+        <h3>Clasificación</h3>
+        <p>Tabla de posiciones actualizada con victorias, derrotas, goles y puntos de cada equipo.</p>
+      </div>
+      <div class="feature-card reveal reveal-delay-3">
+        <div class="feature-icon">📊</div>
+        <h3>Estadísticas</h3>
+        <p>Análisis profundo de goles, tarjetas, posesión y mucho más para cada equipo y jugador.</p>
+      </div>
+      <div class="feature-card reveal reveal-delay-4">
+        <div class="feature-icon">🔒</div>
+        <h3>Seguridad</h3>
+        <p>Plataforma segura con protección de datos y autenticación avanzada para todos los usuarios.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- OPINIONS -->
+  <section class="opinions-section">
+    <div class="opinions-inner">
+      <div class="opinions-header">
+        <span class="section-tag reveal">Comunidad</span>
+        <h2 class="section-title reveal reveal-delay-1">Opiniones de usuarios</h2>
+        <p class="section-subtitle reveal reveal-delay-2" style="margin: 0 auto;">Lo que dicen los aficionados que ya usan SafeGoalStats cada jornada.</p>
+      </div>
+
+      <div class="opinions-grid">
+        <div class="opinion-card reveal reveal-delay-1">
+          <div class="opinion-stars">★★★★★</div>
+          <div class="opinion-quote">"</div>
+          <p class="opinion-text">La mejor plataforma para seguir la Liga. Las estadísticas son muy completas y el diseño facilita encontrar todo lo que buscas.</p>
+          <div class="opinion-author">
+            <div class="opinion-avatar">MR</div>
+            <div class="opinion-meta">
+              <span class="opinion-name">Marcos Ruiz</span>
+              <span class="opinion-role">Seguidor del Atlético</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="opinion-card reveal reveal-delay-2">
+          <div class="opinion-stars">★★★★★</div>
+          <div class="opinion-quote">"</div>
+          <p class="opinion-text">Por fin una web donde puedo consultar los datos de mi equipo rápido y sin publicidad molesta. La clasificación siempre actualizada.</p>
+          <div class="opinion-author">
+            <div class="opinion-avatar">SG</div>
+            <div class="opinion-meta">
+              <span class="opinion-name">Sara González</span>
+              <span class="opinion-role">Fan del Real Madrid</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="opinion-card reveal reveal-delay-3">
+          <div class="opinion-stars">★★★★☆</div>
+          <div class="opinion-quote">"</div>
+          <p class="opinion-text">Muy útil para analizar el rendimiento de los equipos. Me encanta que esté pensada para el aficionado serio que quiere datos reales.</p>
+          <div class="opinion-author">
+            <div class="opinion-avatar">JP</div>
+            <div class="opinion-meta">
+              <span class="opinion-name">Jordi Puig</span>
+              <span class="opinion-role">Seguidor del Barça</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
 </main>
-<script src="js/app.js"></script>
-<body>
 
-<script>
-const btnTema = document.getElementById('toggleTema');
-
-if(btnTema){
-  btnTema.addEventListener('click', () => {
-    document.body.classList.toggle('claro');
-    const modoActual = document.body.classList.contains('claro') ? 'claro' : 'oscuro';
-    localStorage.setItem('tema', modoActual);
-  });
-}
-
-</script>
+<footer>
+  <p>© 2026 SafeGoalStats · Creado por Daniel Pariente y Alex Rubio</p>
+</footer>
 
 <button id="toggleTema">🌙</button>
-<script src="main.js"></script>
 
+<script src="js/app.js"></script>
 <script src="js/auth.js"></script>
+<script src="main.js"></script>
+<script>
+// Scroll reveal
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.12 });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
 </body>
 </html>
-

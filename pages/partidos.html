@@ -5,11 +5,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Partidos | SafeGoalStats</title>
 <link rel="stylesheet" href="../css/style.css">
+
 <script>
-const tema = localStorage.getItem("tema");
-if (tema === "claro") document.documentElement.classList.add("claro");
+if (localStorage.getItem("tema") === "claro") {
+    document.documentElement.classList.add("claro");
+}
 </script>
 </head>
+
 <body>
 
 <header>
@@ -17,6 +20,7 @@ if (tema === "claro") document.documentElement.classList.add("claro");
     <span class="logo-dot"></span>
     SafeGoalStats
   </a>
+
   <nav>
     <a href="../index.html">Inicio</a>
     <a href="partidos.html" class="activo">Partidos</a>
@@ -27,80 +31,100 @@ if (tema === "claro") document.documentElement.classList.add("claro");
   </nav>
 </header>
 
+
 <main>
-  <div class="page-header">
-    <span class="section-tag">Jornada actual</span>
-    <h2 class="titulo-pagina">Partidos</h2>
-    <p style="color:var(--text-secondary);font-size:.95rem;max-width:560px;">Resultados recientes, partidos en curso y próximos encuentros de LaLiga EA Sports.</p>
-    <div class="page-divider"></div>
-  </div>
 
-  <section class="bloque reveal" style="margin-top:var(--space-xl);">
-    <h3>Información</h3>
-    <p>Aquí se muestra información sobre partidos disputados y programados. En próximas versiones se conectará a una API deportiva en tiempo real para mostrar resultados actualizados automáticamente.</p>
-  </section>
+<div class="page-header">
+  <h2 class="titulo-pagina">Partidos de LaLiga</h2>
+  <p style="color:var(--text-secondary)">Últimos y próximos encuentros en tiempo real</p>
+</div>
 
-  <section class="bloque reveal reveal-delay-1">
-    <h3>Últimos resultados</h3>
-    <div style="display:flex;flex-direction:column;gap:var(--space-md);margin-top:var(--space-md);">
-      <div style="display:flex;align-items:center;justify-content:space-between;padding:var(--space-md);background:var(--bg-glass-2);border-radius:var(--radius-md);border:1px solid var(--border-subtle);">
-        <span style="color:var(--text-primary);font-weight:500;flex:1;">Dragones FC</span>
-        <span style="font-family:var(--font-display);font-size:1.3rem;color:var(--accent-emerald);padding:0 var(--space-lg);">3 — 1</span>
-        <span style="color:var(--text-primary);font-weight:500;flex:1;text-align:right;">Lobos FC</span>
-      </div>
-      <div style="display:flex;align-items:center;justify-content:space-between;padding:var(--space-md);background:var(--bg-glass-2);border-radius:var(--radius-md);border:1px solid var(--border-subtle);">
-        <span style="color:var(--text-primary);font-weight:500;flex:1;">Toros United</span>
-        <span style="font-family:var(--font-display);font-size:1.3rem;color:var(--accent-emerald);padding:0 var(--space-lg);">2 — 2</span>
-        <span style="color:var(--text-primary);font-weight:500;flex:1;text-align:right;">Leones Club</span>
-      </div>
-      <div style="display:flex;align-items:center;justify-content:space-between;padding:var(--space-md);background:var(--bg-glass-2);border-radius:var(--radius-md);border:1px solid var(--border-subtle);">
-        <span style="color:var(--text-primary);font-weight:500;flex:1;">Águilas</span>
-        <span style="font-family:var(--font-display);font-size:1.3rem;color:var(--accent-emerald);padding:0 var(--space-lg);">0 — 2</span>
-        <span style="color:var(--text-primary);font-weight:500;flex:1;text-align:right;">Tiburones</span>
-      </div>
-    </div>
-    <p style="font-size:.8rem;color:var(--text-muted);margin-top:var(--space-md);">Datos de ejemplo · Próximamente resultados en tiempo real</p>
-  </section>
+<!-- LOADING -->
+<div id="loading">Cargando partidos...</div>
 
-  <section class="bloque reveal reveal-delay-2">
-    <h3>Próximos encuentros</h3>
-    <div style="display:flex;flex-direction:column;gap:var(--space-md);margin-top:var(--space-md);">
-      <div style="display:flex;align-items:center;justify-content:space-between;padding:var(--space-md);background:var(--bg-glass-2);border-radius:var(--radius-md);border:1px solid var(--border-subtle);">
-        <span style="color:var(--text-primary);font-weight:500;flex:1;">Leones Club</span>
-        <div style="text-align:center;padding:0 var(--space-lg);">
-          <div style="font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);">26 Abr</div>
-          <div style="font-size:.85rem;color:var(--accent-gold);font-weight:600;">20:00</div>
-        </div>
-        <span style="color:var(--text-primary);font-weight:500;flex:1;text-align:right;">Dragones FC</span>
-      </div>
-      <div style="display:flex;align-items:center;justify-content:space-between;padding:var(--space-md);background:var(--bg-glass-2);border-radius:var(--radius-md);border:1px solid var(--border-subtle);">
-        <span style="color:var(--text-primary);font-weight:500;flex:1;">Lobos FC</span>
-        <div style="text-align:center;padding:0 var(--space-lg);">
-          <div style="font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);">27 Abr</div>
-          <div style="font-size:.85rem;color:var(--accent-gold);font-weight:600;">18:30</div>
-        </div>
-        <span style="color:var(--text-primary);font-weight:500;flex:1;text-align:right;">Toros United</span>
-      </div>
-    </div>
-  </section>
+<!-- LISTA PARTIDOS -->
+<section id="partidos-container" style="display:none"></section>
+
 </main>
 
+
 <footer>
-  <p>© 2026 SafeGoalStats · Creado por Daniel Pariente y Alex Rubio</p>
+  <p>© 2026 SafeGoalStats</p>
 </footer>
 
 <button id="toggleTema">🌙</button>
 
+
 <script src="../js/app.js"></script>
 <script src="../js/auth.js"></script>
 <script src="../js/main.js"></script>
+
+
 <script>
-if (!localStorage.getItem("token")) window.location.href = "login.html";
-const observer = new IntersectionObserver(
-  entries => entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); }),
-  { threshold: 0.1 }
-);
-document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+if (!localStorage.getItem("token")) {
+    window.location.href = "login.html";
+}
+
+const container = document.getElementById("partidos-container");
+const loading = document.getElementById("loading");
+
+
+function formatearFecha(fecha) {
+    const d = new Date(fecha);
+    return d.toLocaleDateString("es-ES", {
+        day: "2-digit",
+        month: "short",
+        hour: "2-digit",
+        minute: "2-digit"
+    });
+}
+
+function crearPartido(p) {
+    const home = p.homeTeam?.name;
+    const away = p.awayTeam?.name;
+    const status = p.status;
+    const date = formatearFecha(p.utcDate);
+
+    let marcador = "";
+
+    if (status === "FINISHED") {
+        marcador = `<strong>${p.score.fullTime.home} - ${p.score.fullTime.away}</strong>`;
+    } else {
+        marcador = `<span style="color:var(--accent-gold)">VS</span>`;
+    }
+
+    return `
+        <div class="bloque" style="margin-bottom:10px; padding:15px;">
+            <div style="display:flex; justify-content:space-between;">
+                <span>${home}</span>
+                ${marcador}
+                <span>${away}</span>
+            </div>
+            <small style="color:var(--text-secondary)">${date}</small>
+        </div>
+    `;
+}
+
+
+async function cargarPartidos() {
+    try {
+        const res = await fetch("http://localhost:3000/api/partidos");
+        const data = await res.json();
+
+        const partidos = data.matches;
+
+        container.innerHTML = partidos.map(crearPartido).join("");
+
+        loading.style.display = "none";
+        container.style.display = "block";
+
+    } catch (err) {
+        console.error(err);
+        loading.innerHTML = "Error cargando partidos";
+    }
+}
+
+cargarPartidos();
 </script>
 
 </body>

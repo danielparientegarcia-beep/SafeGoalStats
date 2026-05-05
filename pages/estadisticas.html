@@ -5,12 +5,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Estadísticas | SafeGoalStats</title>
 <link rel="stylesheet" href="../css/style.css">
-<script src="../js/script.js" defer></script>
+
 <script>
-const tema = localStorage.getItem("tema");
-if (tema === "claro") document.documentElement.classList.add("claro");
+if (localStorage.getItem("tema") === "claro") {
+    document.documentElement.classList.add("claro");
+}
 </script>
 </head>
+
 <body>
 
 <header>
@@ -18,6 +20,7 @@ if (tema === "claro") document.documentElement.classList.add("claro");
     <span class="logo-dot"></span>
     SafeGoalStats
   </a>
+
   <nav>
     <a href="../index.html">Inicio</a>
     <a href="partidos.html">Partidos</a>
@@ -29,41 +32,20 @@ if (tema === "claro") document.documentElement.classList.add("claro");
 </header>
 
 <main>
-  <div class="page-header">
-    <span class="section-tag">Temporada 2025/26</span>
-    <h2 class="titulo-pagina">Estadísticas</h2>
-    <p style="color:var(--text-secondary);font-size:.95rem;max-width:560px;">Datos globales de la temporada. Consulta goles, partidos disputados, tarjetas y más indicadores de rendimiento.</p>
-    <div class="page-divider"></div>
-  </div>
 
-  <section class="estadisticas-grid">
-    <div class="stat-card reveal">
-      <h3>Goles totales</h3>
-      <p class="stat-numero" id="goles">1234</p>
-    </div>
-    <div class="stat-card reveal reveal-delay-1">
-      <h3>Partidos jugados</h3>
-      <p class="stat-numero" id="partidos">380</p>
-    </div>
-    <div class="stat-card reveal reveal-delay-2">
-      <h3>Tarjetas amarillas</h3>
-      <p class="stat-numero" id="amarillas">1450</p>
-    </div>
-    <div class="stat-card reveal reveal-delay-3">
-      <h3>Tarjetas rojas</h3>
-      <p class="stat-numero" id="rojas">120</p>
-    </div>
-  </section>
+<div class="page-header">
+  <h2 class="titulo-pagina">Estadísticas de LaLiga</h2>
+  <p style="color:var(--text-secondary)">Máximos goleadores en tiempo real</p>
+</div>
 
-  <section class="bloque reveal" style="text-align:center;">
-    <h3>Actualizar datos</h3>
-    <p style="margin-bottom:var(--space-lg);">Conecta con la API deportiva para obtener las últimas estadísticas de la temporada en curso.</p>
-    <button onclick="actualizarEstadisticas()">Actualizar datos</button>
-  </section>
+<div id="loading">Cargando estadísticas...</div>
+
+<section id="stats-container" style="display:none"></section>
+
 </main>
 
 <footer>
-  <p>© 2026 SafeGoalStats · Creado por Daniel Pariente y Alex Rubio</p>
+  <p>© 2026 SafeGoalStats</p>
 </footer>
 
 <button id="toggleTema">🌙</button>
@@ -71,13 +53,51 @@ if (tema === "claro") document.documentElement.classList.add("claro");
 <script src="../js/app.js"></script>
 <script src="../js/auth.js"></script>
 <script src="../js/main.js"></script>
+
+
 <script>
-if (!localStorage.getItem("token")) window.location.href = "login.html";
-const observer = new IntersectionObserver(
-  entries => entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); }),
-  { threshold: 0.1 }
-);
-document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+if (!localStorage.getItem("token")) {
+    window.location.href = "login.html";
+}
+
+const container = document.getElementById("stats-container");
+const loading = document.getElementById("loading");
+
+
+function crearJugador(j) {
+    return `
+        <div class="bloque" style="padding:15px; margin-bottom:10px;">
+            <div style="display:flex; justify-content:space-between;">
+                <strong>${j.player.name}</strong>
+                <span style="color:var(--accent-gold)">${j.goals} goles</span>
+            </div>
+            <small style="color:var(--text-secondary)">
+                ${j.team.name}
+            </small>
+        </div>
+    `;
+}
+
+
+async function cargarStats() {
+    try {
+        const res = await fetch("http://localhost:3000/api/estadisticas");
+        const data = await res.json();
+
+        const scorers = data.scorers;
+
+        container.innerHTML = scorers.map(crearJugador).join("");
+
+        loading.style.display = "none";
+        container.style.display = "block";
+
+    } catch (err) {
+        console.error(err);
+        loading.innerHTML = "Error cargando estadísticas";
+    }
+}
+
+cargarStats();
 </script>
 
 </body>

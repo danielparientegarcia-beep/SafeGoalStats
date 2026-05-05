@@ -52,7 +52,13 @@ if (tema === "claro") document.documentElement.classList.add("claro");
           <th>Pts</th>
         </tr>
       </thead>
-      <tbody id="tabla-body">
+      <tbody>
+        <tr><td>1</td><td>Dragones FC</td><td>10</td><td>8</td><td>2</td><td>24</td></tr>
+        <tr><td>2</td><td>Toros United</td><td>10</td><td>7</td><td>3</td><td>21</td></tr>
+        <tr><td>3</td><td>Leones Club</td><td>10</td><td>6</td><td>4</td><td>18</td></tr>
+        <tr><td>4</td><td>Águilas</td><td>10</td><td>5</td><td>5</td><td>15</td></tr>
+        <tr><td>5</td><td>Tiburones</td><td>10</td><td>3</td><td>7</td><td>9</td></tr>
+        <tr><td>6</td><td>Lobos FC</td><td>10</td><td>1</td><td>9</td><td>3</td></tr>
       </tbody>
     </table>
   </section>
@@ -92,36 +98,6 @@ const observer = new IntersectionObserver(
   { threshold: 0.1 }
 );
 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-async function cargarClasificacion() {
-    try {
-        const res = await fetch("http://localhost:3000/api/clasificacion");
-        const data = await res.json();
-
-        const tabla = document.getElementById("tabla-body");
-        tabla.innerHTML = "";
-
-        const equipos = data.standings[0].table;
-
-        equipos.forEach(equipo => {
-            tabla.innerHTML += `
-                <tr>
-                    <td>${equipo.position}</td>
-                    <td>${equipo.team.name}</td>
-                    <td>${equipo.playedGames}</td>
-                    <td>${equipo.won}</td>
-                    <td>${equipo.lost}</td>
-                    <td>${equipo.points}</td>
-                </tr>
-            `;
-        });
-
-    } catch (error) {
-        console.error("Error cargando clasificación:", error);
-    }
-}
-
-cargarClasificacion();
 </script>
 
 </body>

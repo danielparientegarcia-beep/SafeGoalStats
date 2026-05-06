@@ -81,7 +81,7 @@ function crearJugador(j) {
 
 async function cargarStats() {
     try {
-        const res = await fetch("http://localhost:3000/api/estadisticas");
+        const res = await fetch("http://192.168.239.119:3000/api/estadisticas");
         const data = await res.json();
 
         const scorers = data.scorers;

@@ -108,7 +108,7 @@ function crearPartido(p) {
 
 async function cargarPartidos() {
     try {
-        const res = await fetch("http://localhost:3000/api/partidos");
+        const res = await fetch("http://192.168.239.119:3000/api/partidos");
         const data = await res.json();
 
         const partidos = data.matches;

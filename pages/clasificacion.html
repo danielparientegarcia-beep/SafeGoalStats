@@ -95,7 +95,7 @@ document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
 async function cargarClasificacion() {
     try {
-        const res = await fetch("http://localhost:3000/api/clasificacion");
+        const res = await fetch("http://192.168.239.119:3000/api/clasificacion");
         const data = await res.json();
 
         const tabla = document.getElementById("tabla-body");

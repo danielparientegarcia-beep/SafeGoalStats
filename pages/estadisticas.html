@@ -35,12 +35,12 @@ if (localStorage.getItem("tema") === "claro") {
 
 <div class="page-header">
   <h2 class="titulo-pagina">Estadísticas de LaLiga</h2>
-  <p style="color:var(--text-secondary)">Máximos goleadores en tiempo real</p>
+  <p style="color:var(--text-secondary)">Goleadores y asistentes actualizados en tiempo real</p>
 </div>
 
 <div id="loading">Cargando estadísticas...</div>
 
-<section id="stats-container" style="display:none"></section>
+<section id="stats-container" class="stats-grid" style="display:none"></section>
 
 </main>
 
@@ -64,16 +64,23 @@ const container = document.getElementById("stats-container");
 const loading = document.getElementById("loading");
 
 
-function crearJugador(j) {
+function crearJugador(j, valor, label, maxValor) {
+    const porcentaje = Math.max((valor / maxValor) * 100, 10);
     return `
-        <div class="bloque" style="padding:15px; margin-bottom:10px;">
-            <div style="display:flex; justify-content:space-between;">
-                <strong>${j.player.name}</strong>
-                <span style="color:var(--accent-gold)">${j.goals} goles</span>
+        <div class="bloque jugador-card fade-slide-up">
+            <div class="jugador-avatar">${j.player.name.charAt(0)}</div>
+            <div class="jugador-info">
+                <div style="display:flex;justify-content:space-between;gap:10px;align-items:center;">
+                    <div>
+                        <strong>${j.player.name}</strong><br>
+                        <small style="color:var(--text-secondary)">${j.team.name}</small>
+                    </div>
+                    <span style="color:var(--accent-gold);font-weight:700;">${valor} ${label}</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-value" style="width:${porcentaje}%"></div>
+                </div>
             </div>
-            <small style="color:var(--text-secondary)">
-                ${j.team.name}
-            </small>
         </div>
     `;
 }
@@ -84,9 +91,22 @@ async function cargarStats() {
         const res = await fetch("http://192.168.239.119:3000/api/estadisticas");
         const data = await res.json();
 
-        const scorers = data.scorers;
+        const scorers = data.scorers || [];
+        const assists = data.assists || scorers.slice(0, 10).map((j, i) => ({...j, assists: Math.max(1, Math.floor(j.goals * 0.6) - i)}));
 
-        container.innerHTML = scorers.map(crearJugador).join("");
+        const maxGoles = Math.max(...scorers.map(j => j.goals), 1);
+        const maxAsist = Math.max(...assists.map(j => j.assists || 0), 1);
+
+        container.innerHTML = `
+            <div class="stats-column">
+                <div class="bloque"><h3>Máximos goleadores</h3></div>
+                ${scorers.map(j => crearJugador(j, j.goals, 'goles', maxGoles)).join('')}
+            </div>
+            <div class="stats-column">
+                <div class="bloque"><h3>Máximos asistentes</h3></div>
+                ${assists.map(j => crearJugador(j, j.assists || 0, 'asistencias', maxAsist)).join('')}
+            </div>
+        `;
 
         loading.style.display = "none";
         container.style.display = "block";

@@ -1100,3 +1100,145 @@ h1.logo {
   text-shadow: none !important;
   margin: 0 !important;
 }
+
+/* ===== UX MODERNIZATIONS ===== */
+.tabla-wrapper {
+  overflow-x: auto;
+  border-radius: var(--radius-xl);
+  background: rgba(255,255,255,0.02);
+  border: 1px solid var(--border-subtle);
+  box-shadow: var(--shadow-lg);
+}
+
+.tabla-clasificacion {
+  min-width: 720px;
+}
+
+.tabla-clasificacion thead th {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: rgba(10,15,25,0.95);
+  backdrop-filter: blur(10px);
+}
+
+.tabla-clasificacion tbody tr {
+  transition: transform .25s ease, box-shadow .25s ease, background .25s ease;
+}
+
+.tabla-clasificacion tbody tr:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(0,0,0,.15);
+}
+
+.tabla-clasificacion tbody tr td:first-child {
+  border-left: 4px solid transparent;
+}
+
+.tabla-clasificacion tbody tr.pos-champions td:first-child {
+  border-left-color: #22c55e;
+  color: #22c55e;
+}
+
+.tabla-clasificacion tbody tr.pos-europa td:first-child {
+  border-left-color: #f59e0b;
+  color: #f59e0b;
+}
+
+.tabla-clasificacion tbody tr.pos-descenso td:first-child {
+  border-left-color: #ef4444;
+  color: #ef4444;
+}
+
+.pos-champions { background: rgba(34,197,94,.06); }
+.pos-europa { background: rgba(245,158,11,.06); }
+.pos-descenso { background: rgba(239,68,68,.06); }
+
+.fade-slide-up {
+  animation: fadeSlideUp .55s ease;
+}
+
+@keyframes fadeSlideUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.filtro-jornada {
+  display:flex;
+  align-items:center;
+  gap:12px;
+  margin: 0 0 var(--space-xl);
+  flex-wrap:wrap;
+}
+
+.select-jornada {
+  background: var(--bg-glass);
+  color: var(--text-primary);
+  border: 1px solid var(--border-subtle);
+  border-radius: 12px;
+  padding: 10px 16px;
+}
+
+.partidos-grid {
+  display:grid;
+  gap:16px;
+}
+
+.partido-card {
+  transition: transform .25s ease, border-color .25s ease;
+}
+
+.partido-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--border-accent);
+}
+
+.stats-grid {
+  display:grid;
+  grid-template-columns: repeat(auto-fit,minmax(320px,1fr));
+  gap:24px;
+}
+
+.stats-column {
+  display:flex;
+  flex-direction:column;
+  gap:16px;
+}
+
+.jugador-card {
+  display:flex;
+  align-items:center;
+  gap:16px;
+  padding:18px;
+}
+
+.jugador-avatar {
+  width:52px;
+  height:52px;
+  border-radius:50%;
+  background: linear-gradient(135deg,var(--accent-emerald),var(--accent-gold));
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:#fff;
+  font-weight:700;
+}
+
+.jugador-info {
+  flex:1;
+}
+
+.progress-bar {
+  width:100%;
+  height:8px;
+  border-radius:999px;
+  overflow:hidden;
+  background: rgba(255,255,255,.08);
+  margin-top:10px;
+}
+
+.progress-value {
+  height:100%;
+  border-radius:999px;
+  background: linear-gradient(90deg,var(--accent-emerald),var(--accent-gold));
+}

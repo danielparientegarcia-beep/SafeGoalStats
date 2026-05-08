@@ -41,9 +41,9 @@ if (tema === "claro") document.documentElement.classList.add("claro");
       <button onclick="ordenarTabla()">Ordenar por puntos</button>
     </div>
 
-    <table class="tabla-clasificacion" id="tablaLiga">
+    <div class="tabla-wrapper fade-slide-up"><table class="tabla-clasificacion" id="tablaLiga">
       <thead>
-        <tr>
+        <tr class="fade-slide-up">
           <th>Pos</th>
           <th style="text-align:left;">Equipo</th>
           <th>PJ</th>
@@ -54,7 +54,7 @@ if (tema === "claro") document.documentElement.classList.add("claro");
       </thead>
       <tbody id="tabla-body">
       </tbody>
-    </table>
+    </table></div>
   </section>
 
   <section class="bloque reveal reveal-delay-1" style="padding:var(--space-lg) var(--space-xl);">
@@ -71,7 +71,7 @@ if (tema === "claro") document.documentElement.classList.add("claro");
         <div style="width:10px;height:10px;border-radius:50%;background:#ff5050;"></div>
         <span style="font-size:.82rem;color:var(--text-muted);">Descenso</span>
       </div>
-      <p style="font-size:.82rem;color:var(--text-muted);margin:0;margin-left:auto;">Datos de ejemplo · Próximamente API en tiempo real</p>
+      <p style="font-size:.82rem;color:var(--text-muted);margin:0;margin-left:auto;">Datos actualizados en tiempo real desde la API</p>
     </div>
   </section>
 </main>
@@ -104,8 +104,12 @@ async function cargarClasificacion() {
         const equipos = data.standings[0].table;
 
         equipos.forEach(equipo => {
+            let clase = "";
+            if (equipo.position >= 1 && equipo.position <= 5) clase = "pos-champions";
+            else if (equipo.position === 6) clase = "pos-europa";
+            else if (equipo.position >= 18) clase = "pos-descenso";
             tabla.innerHTML += `
-                <tr>
+                <tr class="${clase} fade-slide-up">
                     <td>${equipo.position}</td>
                     <td>${equipo.team.name}</td>
                     <td>${equipo.playedGames}</td>

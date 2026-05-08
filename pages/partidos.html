@@ -39,11 +39,15 @@ if (localStorage.getItem("tema") === "claro") {
   <p style="color:var(--text-secondary)">Últimos y próximos encuentros en tiempo real</p>
 </div>
 
+<div class="filtro-jornada">
+<select id="selectorJornada" class="select-jornada"></select>
+</div>
+
 <!-- LOADING -->
 <div id="loading">Cargando partidos...</div>
 
 <!-- LISTA PARTIDOS -->
-<section id="partidos-container" style="display:none"></section>
+<section id="partidos-container" class="partidos-grid" style="display:none"></section>
 
 </main>
 
@@ -67,6 +71,8 @@ if (!localStorage.getItem("token")) {
 
 const container = document.getElementById("partidos-container");
 const loading = document.getElementById("loading");
+const selectorJornada = document.getElementById("selectorJornada");
+let todosPartidos = [];
 
 
 function formatearFecha(fecha) {
@@ -94,7 +100,7 @@ function crearPartido(p) {
     }
 
     return `
-        <div class="bloque" style="margin-bottom:10px; padding:15px;">
+        <div class="bloque partido-card fade-slide-up" style="margin-bottom:10px; padding:18px;">
             <div style="display:flex; justify-content:space-between;">
                 <span>${home}</span>
                 ${marcador}
@@ -106,17 +112,35 @@ function crearPartido(p) {
 }
 
 
+function renderPartidos(jornada) {
+    const filtrados = todosPartidos.filter(p => (p.matchday || 0) === Number(jornada));
+    container.innerHTML = filtrados.map(crearPartido).join("");
+}
+
 async function cargarPartidos() {
     try {
         const res = await fetch("http://192.168.239.119:3000/api/partidos");
         const data = await res.json();
 
-        const partidos = data.matches;
+        todosPartidos = data.matches || [];
 
-        container.innerHTML = partidos.map(crearPartido).join("");
+        const jornadas = [...new Set(todosPartidos.map(p => p.matchday).filter(Boolean))].sort((a,b)=>a-b);
+
+        selectorJornada.innerHTML = jornadas.map(j => `<option value="${j}">Jornada ${j}</option>`).join("");
+
+        const jornadaActual = [...todosPartidos]
+            .reverse()
+            .find(p => p.status !== "SCHEDULED")?.matchday || jornadas[jornadas.length - 1];
+
+        selectorJornada.value = jornadaActual;
+        renderPartidos(jornadaActual);
+
+        selectorJornada.addEventListener("change", (e) => {
+            renderPartidos(e.target.value);
+        });
 
         loading.style.display = "none";
-        container.style.display = "block";
+        container.style.display = "grid";
 
     } catch (err) {
         console.error(err);

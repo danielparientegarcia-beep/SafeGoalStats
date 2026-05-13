@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Partidos | SafeGoalStats</title>
+
 <link rel="stylesheet" href="../css/style.css">
 
 <script>
@@ -11,6 +12,45 @@ if (localStorage.getItem("tema") === "claro") {
     document.documentElement.classList.add("claro");
 }
 </script>
+
+<style>
+
+.partido-equipos{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+}
+
+.equipo{
+    flex:1;
+    font-weight:600;
+}
+
+.equipo-local{
+    text-align:right;
+}
+
+.equipo-visitante{
+    text-align:left;
+}
+
+.vs-centro{
+    min-width:70px;
+    text-align:center;
+    font-weight:700;
+    color:var(--accent-gold);
+}
+
+.resultado-final{
+    min-width:70px;
+    text-align:center;
+    font-weight:700;
+    color:var(--text-primary);
+}
+
+</style>
+
 </head>
 
 <body>
@@ -36,17 +76,17 @@ if (localStorage.getItem("tema") === "claro") {
 
 <div class="page-header">
   <h2 class="titulo-pagina">Partidos de LaLiga</h2>
-  <p style="color:var(--text-secondary)">Últimos y próximos encuentros en tiempo real</p>
+  <p style="color:var(--text-secondary)">
+    Últimos y próximos encuentros en tiempo real
+  </p>
 </div>
 
 <div class="filtro-jornada">
 <select id="selectorJornada" class="select-jornada"></select>
 </div>
 
-<!-- LOADING -->
 <div id="loading">Cargando partidos...</div>
 
-<!-- LISTA PARTIDOS -->
 <section id="partidos-container" class="partidos-grid" style="display:none"></section>
 
 </main>
@@ -65,6 +105,7 @@ if (localStorage.getItem("tema") === "claro") {
 
 
 <script>
+
 if (!localStorage.getItem("token")) {
     window.location.href = "login.html";
 }
@@ -72,11 +113,13 @@ if (!localStorage.getItem("token")) {
 const container = document.getElementById("partidos-container");
 const loading = document.getElementById("loading");
 const selectorJornada = document.getElementById("selectorJornada");
+
 let todosPartidos = [];
 
-
 function formatearFecha(fecha) {
+
     const d = new Date(fecha);
+
     return d.toLocaleDateString("es-ES", {
         day: "2-digit",
         month: "short",
@@ -86,53 +129,96 @@ function formatearFecha(fecha) {
 }
 
 function crearPartido(p) {
-    const home = p.homeTeam?.name;
-    const away = p.awayTeam?.name;
+
+    const home = p.homeTeam?.name || "Local";
+    const away = p.awayTeam?.name || "Visitante";
+
     const status = p.status;
+
     const date = formatearFecha(p.utcDate);
 
-    let marcador = "";
+    let centro = "";
 
     if (status === "FINISHED") {
-        marcador = `<strong>${p.score.fullTime.home} - ${p.score.fullTime.away}</strong>`;
+
+        centro = `
+            <div class="resultado-final">
+                ${p.score.fullTime.home} - ${p.score.fullTime.away}
+            </div>
+        `;
+
     } else {
-        marcador = `<span style="color:var(--accent-gold)">VS</span>`;
+
+        centro = `
+            <div class="vs-centro">
+                VS
+            </div>
+        `;
     }
 
     return `
-        <div class="bloque partido-card fade-slide-up" style="margin-bottom:10px; padding:18px;">
-            <div style="display:flex; justify-content:space-between;">
-                <span>${home}</span>
-                ${marcador}
-                <span>${away}</span>
+        <div class="bloque partido-card fade-slide-up" style="padding:20px;">
+
+            <div class="partido-equipos">
+
+                <div class="equipo equipo-local">
+                    ${home}
+                </div>
+
+                ${centro}
+
+                <div class="equipo equipo-visitante">
+                    ${away}
+                </div>
+
             </div>
-            <small style="color:var(--text-secondary)">${date}</small>
+
+            <div style="margin-top:14px;text-align:center;color:var(--text-secondary);font-size:.9rem;">
+                ${date}
+            </div>
+
         </div>
     `;
 }
 
-
 function renderPartidos(jornada) {
-    const filtrados = todosPartidos.filter(p => (p.matchday || 0) === Number(jornada));
+
+    const filtrados = todosPartidos.filter(
+        p => (p.matchday || 0) === Number(jornada)
+    );
+
     container.innerHTML = filtrados.map(crearPartido).join("");
 }
 
 async function cargarPartidos() {
+
     try {
-        const res = await fetch("http://192.168.239.119:3000/api/partidos");
+
+        const res = await fetch("/api/partidos");
+
         const data = await res.json();
 
         todosPartidos = data.matches || [];
 
-        const jornadas = [...new Set(todosPartidos.map(p => p.matchday).filter(Boolean))].sort((a,b)=>a-b);
+        const jornadas = [
+            ...new Set(
+                todosPartidos
+                .map(p => p.matchday)
+                .filter(Boolean)
+            )
+        ].sort((a,b)=>a-b);
 
-        selectorJornada.innerHTML = jornadas.map(j => `<option value="${j}">Jornada ${j}</option>`).join("");
+        selectorJornada.innerHTML = jornadas.map(j =>
+            `<option value="${j}">Jornada ${j}</option>`
+        ).join("");
 
         const jornadaActual = [...todosPartidos]
             .reverse()
-            .find(p => p.status !== "SCHEDULED")?.matchday || jornadas[jornadas.length - 1];
+            .find(p => p.status !== "SCHEDULED")
+            ?.matchday || jornadas[jornadas.length - 1];
 
         selectorJornada.value = jornadaActual;
+
         renderPartidos(jornadaActual);
 
         selectorJornada.addEventListener("change", (e) => {
@@ -140,15 +226,19 @@ async function cargarPartidos() {
         });
 
         loading.style.display = "none";
+
         container.style.display = "grid";
 
     } catch (err) {
+
         console.error(err);
+
         loading.innerHTML = "Error cargando partidos";
     }
 }
 
 cargarPartidos();
+
 </script>
 
 </body>

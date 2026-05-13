@@ -88,23 +88,17 @@ function crearJugador(j, valor, label, maxValor) {
 
 async function cargarStats() {
     try {
-        const res = await fetch("http://192.168.239.119:3000/api/estadisticas");
+        const res = await fetch("/api/estadisticas");
         const data = await res.json();
 
         const scorers = data.scorers || [];
-        const assists = data.assists || scorers.slice(0, 10).map((j, i) => ({...j, assists: Math.max(1, Math.floor(j.goals * 0.6) - i)}));
 
         const maxGoles = Math.max(...scorers.map(j => j.goals), 1);
-        const maxAsist = Math.max(...assists.map(j => j.assists || 0), 1);
 
         container.innerHTML = `
             <div class="stats-column">
                 <div class="bloque"><h3>Máximos goleadores</h3></div>
                 ${scorers.map(j => crearJugador(j, j.goals, 'goles', maxGoles)).join('')}
-            </div>
-            <div class="stats-column">
-                <div class="bloque"><h3>Máximos asistentes</h3></div>
-                ${assists.map(j => crearJugador(j, j.assists || 0, 'asistencias', maxAsist)).join('')}
             </div>
         `;
 

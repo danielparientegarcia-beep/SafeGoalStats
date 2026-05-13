@@ -1242,3 +1242,22 @@ h1.logo {
   border-radius:999px;
   background: linear-gradient(90deg,var(--accent-emerald),var(--accent-gold));
 }
+
+.partido-equipos{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:20px;
+    text-align:center;
+}
+
+.partido-vs{
+    min-width:60px;
+    text-align:center;
+    font-weight:bold;
+}
+
+.partido-equipo{
+    flex:1;
+    text-align:center;
+}

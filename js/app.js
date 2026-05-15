@@ -1,107 +1,88 @@
 console.log("SafeGoalStats cargado correctamente");
 
+// =======================
+// UTILIDAD TABLA (SI EXISTE)
+// =======================
 function ordenarTabla() {
   const tabla = document.getElementById("tablaLiga");
+  if (!tabla) return;
+
   const filas = Array.from(tabla.rows).slice(1);
 
   filas.sort((a, b) => {
-    return b.cells[5].innerText - a.cells[5].innerText;
+    return (b.cells[5]?.innerText || 0) - (a.cells[5]?.innerText || 0);
   });
 
   filas.forEach(fila => tabla.appendChild(fila));
 }
 
 // =======================
-// DETECTAR TEMA SISTEMA
+// TEMA (CLARO / OSCURO)
 // =======================
-
-const temaGuardado = localStorage.getItem("tema");
-
-if(!temaGuardado){
-  if(window.matchMedia("(prefers-color-scheme: light)").matches){
+function aplicarTema() {
+  const tema = localStorage.getItem("tema") || "oscuro";
+  if (tema === "claro") {
     document.body.classList.add("claro");
+  } else {
+    document.body.classList.remove("claro");
   }
 }
 
-// Detectar página activa correctamente
-const links = document.querySelectorAll("nav a");
+document.addEventListener("DOMContentLoaded", () => {
+  aplicarTema();
 
-links.forEach(link => {
-  const linkHref = link.getAttribute("href");
+  const botonModo = document.getElementById("modoToggle");
 
-  if (!linkHref) return;
+  if (botonModo) {
+    botonModo.addEventListener("click", () => {
+      const esClaro = document.body.classList.toggle("claro");
 
+      localStorage.setItem("tema", esClaro ? "claro" : "oscuro");
+
+      botonModo.textContent = esClaro ? "☀️" : "🌙";
+    });
+  }
+
+  // =======================
+  // NAV ACTIVO
+  // =======================
+  const links = document.querySelectorAll("nav a");
   const currentPath = window.location.pathname;
 
-  if (currentPath.includes(linkHref.replace("../", "").replace("pages/", ""))) {
-    link.classList.add("activo");
-  }
-});
-// =================
-// MODO OSCURO / CLARO
-// =================
+  links.forEach(link => {
+    const href = link.getAttribute("href");
+    if (!href) return;
 
-const botonModo = document.getElementById("modoToggle");
+    const limpio = href.replace("../", "").replace("pages/", "");
 
-// cargar preferencia guardada
-if(localStorage.getItem("tema") === "claro"){
-  document.body.classList.add("claro");
-  if(botonModo) botonModo.textContent="☀️";
-}
-
-// toggle
-if(botonModo){
-  botonModo.addEventListener("click", ()=>{
-    document.body.classList.toggle("claro");
-
-    if(document.body.classList.contains("claro")){
-      localStorage.setItem("tema","claro");
-      botonModo.textContent="☀️";
-    }else{
-      localStorage.setItem("tema","oscuro");
-      botonModo.textContent="🌙";
+    if (currentPath.includes(limpio)) {
+      link.classList.add("activo");
     }
   });
-}
 
-// ===========================
-// TRANSICION ENTRE PAGINAS
-// ===========================
+  // =======================
+  // NAV AUTH (LOGIN/LOGOUT)
+  // =======================
+  const navAuth = document.getElementById("nav-auth");
 
-document.addEventListener("click", function(e){
-  const link = e.target.closest("a");
+  if (navAuth) {
+    const token = localStorage.getItem("token");
 
-  if (!link) return;
+    if (token) {
+      navAuth.innerHTML = `
+        <a href="#" id="logout-btn" class="registro">Logout</a>
+      `;
 
-  const destino = link.getAttribute("href");
-
-  if(!destino || destino.startsWith("#") || destino.startsWith("http"))
-    return;
-
-  e.preventDefault();
-
-  document.body.classList.add("fade-out");
-
-  setTimeout(()=>{
-    window.location.href = destino;
-  }, 300);
-});
-
-window.addEventListener("pageshow", ()=>{
-  document.body.classList.remove("fade-out");
-});
-
-document.addEventListener('DOMContentLoaded', () => {
-  const tema = localStorage.getItem('tema') || 'oscuro';
-  if (tema === 'claro') document.body.classList.add('claro');
-  document.body.style.opacity = 1; // se muestra solo cuando la clase ya está aplicada
-});
-
-document.addEventListener('DOMContentLoaded', () => {
-  const tema = localStorage.getItem('tema') || 'oscuro';
-
-  if (tema === 'claro') document.body.classList.add('claro');
-
-  // Mostrar la página solo cuando ya está aplicada la clase
-  document.body.style.opacity = 1;
+      document.getElementById("logout-btn").addEventListener("click", (e) => {
+        e.preventDefault();
+        localStorage.removeItem("token");
+        window.location.href = "/";
+      });
+    } else {
+      navAuth.innerHTML = `
+        <a href="/pages/login.html" class="registro">Login</a>
+        <a href="/pages/registro.html" class="registro">Registro</a>
+      `;
+    }
+  }
 });

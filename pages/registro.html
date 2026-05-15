@@ -1,18 +1,7 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Registro | SafeGoalStats</title>
-<link rel="stylesheet" href="../css/style.css">
-<script>
-const tema = localStorage.getItem("tema");
-if (tema === "claro") document.documentElement.classList.add("claro");
-// Redirect to unified auth page with registro tab
-window.location.replace("login.html#registro");
-</script>
-</head>
-<body>
-<!-- Redirecting to login.html#registro -->
-</body>
-</html>
+const API = "https://safegoalstats-api-production.up.railway.app";
+
+fetch(`${API}/api/auth/login`, {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({ email, password })
+});

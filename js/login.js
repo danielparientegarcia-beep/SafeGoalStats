@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     try {
 
-      const res = await fetch("/api/auth/login", {
+      const res = await fetch('https://safegoalstats-api-production.up.railway.app/api/auth/login', {
         method: "POST",
         headers: {
           "Content-Type": "application/json"

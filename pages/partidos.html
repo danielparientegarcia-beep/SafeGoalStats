@@ -194,7 +194,7 @@ async function cargarPartidos() {
 
     try {
 
-        const res = await fetch("/api/partidos");
+        const res = await fetch("https://safegoalstats-api-production.up.railway.app/api/partidos");
 
         const data = await res.json();
 

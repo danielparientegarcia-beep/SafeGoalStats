@@ -95,7 +95,7 @@ document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
 async function cargarClasificacion() {
     try {
-        const res = await fetch("/api/clasificacion");
+        const res = await fetch("https://safegoalstats-api-production.up.railway.app/api/clasificacion");
         const data = await res.json();
 
         const tabla = document.getElementById("tabla-body");

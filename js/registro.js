@@ -9,7 +9,7 @@ form.addEventListener('submit', async (e) => {
   const password = document.getElementById('password').value;
 
   try {
-    const res = await fetch('/api/auth/registro', {
+    const res = await fetch('https://safegoalstats-api-production.up.railway.app/api/auth/registro', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

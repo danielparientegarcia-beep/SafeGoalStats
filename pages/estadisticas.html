@@ -88,7 +88,7 @@ function crearJugador(j, valor, label, maxValor) {
 
 async function cargarStats() {
     try {
-        const res = await fetch("/api/estadisticas");
+        const res = await fetch("https://safegoalstats-api-production.up.railway.app/api/estadisticas");
         const data = await res.json();
 
         const scorers = data.scorers || [];

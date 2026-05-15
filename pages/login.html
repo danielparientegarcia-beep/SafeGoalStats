@@ -134,7 +134,7 @@ document.addEventListener("DOMContentLoaded", () => {
       if (res.ok) {
         localStorage.setItem("token", data.token);
         alert("Login correcto");
-        window.location.href = "/safegoalstats/index.html";
+        window.location.href = "/";
       } else {
         const err = document.getElementById("error");
         err.textContent = data.mensaje || "Error en login";

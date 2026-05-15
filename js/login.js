@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         alert("Login correcto");
 
-        window.location.href = "/safegoalstats/index.html";
+        window.location.href = "/";
 
       } else {
         alert(data.mensaje || "Error en login");

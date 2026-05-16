@@ -86,7 +86,7 @@ if (tema === "claro") document.documentElement.classList.add("claro");
 <script src="../js/auth.js"></script>
 <script src="../js/main.js"></script>
 <script>
-if (!localStorage.getItem("token")) window.location.href = "login.html";
+
 const observer = new IntersectionObserver(
   entries => entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); }),
   { threshold: 0.1 }
